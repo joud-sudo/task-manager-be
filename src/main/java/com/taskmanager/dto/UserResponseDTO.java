@@ -1,9 +1,9 @@
-package com.DTOs;
+package com.taskmanager.dto;
 
-import com.model.Role;
+import com.taskmanager.model.Role;
+
 import lombok.Builder;
 import lombok.Getter;
-
 
 @Builder
 @Getter

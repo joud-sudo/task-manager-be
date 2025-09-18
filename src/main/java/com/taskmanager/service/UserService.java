@@ -1,4 +1,9 @@
-import com.model.Role;
+package com.taskmanager.service;
+
+import com.taskmanager.model.Role;
+import com.taskmanager.model.UserEntity;
+import com.taskmanager.repository.UserRepo;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -31,8 +36,18 @@ public class UserService {
 
     public UserEntity authenticate(String username, String rawPassword) {
         Optional<UserEntity> userOptional = Optional.ofNullable(userRepo.findByUsername(username));
+
+        if (userOptional.isPresent()) {
+            log.info("User {} found in DB", username);
+            boolean matches = passwordEncoder.matches(rawPassword, userOptional.get().getPassword());
+            log.info("Password match result: {}", matches);
+        } else {
+            log.warn("User {} not found in DB", username);
+        }
+
         return userOptional
                 .filter(user -> passwordEncoder.matches(rawPassword, user.getPassword()))
                 .orElse(null);
     }
+
 }

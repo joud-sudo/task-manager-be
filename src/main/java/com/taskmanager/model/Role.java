@@ -1,4 +1,4 @@
-package com.model;
+package com.taskmanager.model;
 
 public enum Role {
     ADMIN,

@@ -1,4 +1,7 @@
-import com.model.Role;
+package com.taskmanager.config;
+
+import com.taskmanager.model.Role;
+
 import lombok.Getter;
 import lombok.Setter;
 
